@@ -21,40 +21,27 @@ namespace TicTacToe
             };
         public static void PrintGrid(string[,] grid)
         {
-            for (int j = 0; j < COLUMNS; j++)
-            {
-                Console.Write(" ---", Color.Green);
-            }
-
-            Console.Write("\n");
-
             for (int i = 0; i < ROWS; i++)
             {
-                if (i > 0)
-                {
-                    for (int j = 0; j < COLUMNS; j++)
-                    {
-                        Console.Write(" ---", Color.Red);
-
-                    }
-                    Console.WriteLine();
-                }
+                Console.WriteLine(" --- --- ---", Color.Green);
 
                 for (int j = 0; j < COLUMNS; j++)
                 {
-                    Console.Write("|" + "  " + " ", Color.Red);
+                    Console.Write("| " + grid[i, j] + " ", Color.Red);
                 }
+
                 Console.WriteLine("|", Color.Red);
+
             }
 
-            for (int j = 0; j < COLUMNS; j++)
-            {
-                Console.Write(" ---", Color.Green);
-            }
+            Console.WriteLine(" --- --- ---", Color.Green);
         }
 
-        
+
+
+
 
 
     }
 }
+
