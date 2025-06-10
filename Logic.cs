@@ -39,68 +39,19 @@ namespace TicTacToe
             Console.WriteLine(" --- --- ---", Color.Green);
         }
 
-        //Computer placing a symbol
-        public static void ComputerTurn()
-        {           
-            Console.WriteLine("Computer's turn....");
-            Thread.Sleep(3000);
-            Console.WriteLine();
-
-            Random random = new Random();
-
-            int randomColumn;
-            int randomRow;
-
-            // generate a random spot only if not taken
-            do
-            {
-                randomRow = random.Next(0, 3);
-                randomColumn = random.Next(0, 3);
-            }
-
-            while (Logic.grid[randomRow, randomColumn] != " ");
-
-            Logic.grid[randomRow, randomColumn] = UI.computerSymbol;
-            Logic.PrintGrid(Logic.grid);
-            Console.WriteLine();
-        }
-
-        // Ask user to choose a spot
-        public static void UserTurn()
+        // Assigning a symbol to the computer
+        public static void ComputerSymbolAssign()
         {
-            while (true)
+            if (UI.symbolChoice == UI.SYMBOL_CHOICE_O)
             {
-                Console.WriteLine();
-                Console.WriteLine($"Where would you like to place the {UI.symbolChoice}?");
-                Console.WriteLine("Which column? Type 0, 1 or 2.");
-                string columnChoice = Console.ReadLine();
-                Console.WriteLine("Which row? Type 0, 1 or 2.");
-                string rowChoice = Console.ReadLine();
-                int row;
-                int column;
-
-                if (int.TryParse(columnChoice, out column) && int.TryParse(rowChoice, out row))
-                {
-                    if (row >= 0 && row < 3 && column >= 0 && column < 3)
-                    {
-                        if (grid[row, column] == " ")
-                        {
-                            grid[row, column] = UI.symbolChoice;
-                            PrintGrid(grid);
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Spot taken! Try again.");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid spot. Try again.");
-                    }
-                }
+                UI.computerSymbol = UI.SYMBOL_CHOICE_X;
+            }
+            else
+            {
+                UI.computerSymbol = UI.SYMBOL_CHOICE_O;
             }
         }
+
 
         public static bool NotFull()
         {
